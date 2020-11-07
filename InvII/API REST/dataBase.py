@@ -25,13 +25,8 @@ def getDeparmentsData():
     return jsonList
 
 #Inserta un departamento a la base
-def insertDeparment(idDeparment, nameDeparment, employees):
+def insertDeparment(deparmentToInsert):
     deparments= conection(1)
-    deparmentToInsert={
-        "idDeparment":idDeparment,
-        "deparmentName":nameDeparment,
-        "workersID":employees
-    }
     deparments.insert_one(deparmentToInsert);
 
 #Borra un departamento de la base
@@ -57,20 +52,8 @@ def getWorkersData():
     return jsonList
 
 #Inserta un trabajador a la base
-def insertWorker(id, lastName, name, date, idDeparment):
-    deparments= conection(1)
-    myquery = { "idDeparment": idDeparment }
-    deparment= deparments.find_one(myquery, {"_id":0, "deparmentName":1})
-
+def insertWorker(workerToInsert):
     workers= conection(2)
-    workerToInsert={
-        "idWorker":id,
-        "lastNameWorker":lastName,
-        "nameWorker":name,
-        "dateOfAdmisionWorker":date,
-        "idDeparmentFk": idDeparment,
-        "nameDeparmentFk":deparment['deparmentName']
-    }
     workers.insert_one(workerToInsert);
 
 #Borra un trabajador de la base
@@ -85,6 +68,4 @@ def actWorker(key, value, newValue):
     workerToUpdate={ key: value }
     newvalues = {"$set" : {key: newValue}}
     workers.update_one(workerToUpdate, newvalues)
-    
-
 

@@ -46,6 +46,9 @@
                   <h3 class="w3-bar-item">Options</h3>
                   <a href="index.php" class="w3-bar-item w3-button">Home</a>
                   <a href="showDepartments.php" class="w3-bar-item w3-button">Show Deparments</a>
+                  <a href="insertWorkers.php" class="w3-bar-item w3-button">Insert Workers</a>
+                  <a href="insertDeparments.php" class="w3-bar-item w3-button">Insert Deparments</a>
+
                   <a href="#" class="w3-bar-item w3-button">Developers</a>
                 </div>
 
@@ -57,7 +60,7 @@
                    
                 </div>
                 <div id="personinfo"> </div>
-
+        
             </div>
         
         </body>

@@ -20,7 +20,11 @@
                   <h3 class="w3-bar-item">Options</h3>
                   <a href="showDepartments.php" class="w3-bar-item w3-button">Show Departments</a>
                   <a href="showWorkers.php" class="w3-bar-item w3-button">Show Workers</a>
+                  <a href="insertWorkers.php" class="w3-bar-item w3-button">Insert Workers</a>
+                  <a href="insertDeparments.php" class="w3-bar-item w3-button">Insert Deparments</a>
+
                   <a href="#" class="w3-bar-item w3-button">Developers</a>
+
                 </div>
 
                 <!-- Page Content -->
@@ -36,12 +40,7 @@
 
 </html>
 
-<script> 
-    document.getElementById("buscarPartida").addEventListener("click", function(){
-        var idPartida= document.getElementById("idPartida").value;
-        location.href="historialPartida.php?idPartidaABuscar="+idPartida;     
-    });
-</script> 
+
 
 
 
