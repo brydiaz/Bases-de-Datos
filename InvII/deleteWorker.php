@@ -1,33 +1,6 @@
 <!DOCTYPE html>
 <html lang="esp">
     <head>
-
-    <script>
-      var baseurl = "http://localhost:5000";
-      function loadDeparments(){
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET",baseurl + "/deparments",true);
-        xmlhttp.onreadystatechange = function() {
-          if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
-            var persons = JSON.parse(xmlhttp.responseText);
-            var sel = document.getElementById('Combox');
-            //main table content we fill from data from the rest cal
-            for (i = 0; i < persons.length; i++){
-                var opt = document.createElement('option'); 
-                opt.appendChild( document.createTextNode(persons[i].deparmentName) );
-                opt.value = 'option value';
-                sel.appendChild(opt); 
-            }
-            
-          }
-        };
-        xmlhttp.send();
-      }
-      window.onload = function(){
-        loadDeparments();
-      }
-
-    </script>
      
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,13 +21,14 @@
                   <a href="index.php" class="w3-bar-item w3-button">Home</a>
                   <a href="showDepartments.php" class="w3-bar-item w3-button">Show Departments</a>
                   <a href="showWorkers.php" class="w3-bar-item w3-button">Show Workers</a>
+                  <a href="insertWorkers.php" class="w3-bar-item w3-button">Insert Workers</a>
                   <a href="insertDeparments.php" class="w3-bar-item w3-button">Insert Deparments</a>
                   <a href="editWorker.php" class="w3-bar-item w3-button">Edit Worker</a>
                   <a href="editDeparment.php" class="w3-bar-item w3-button">Edit Deparment</a>
-                  <a href="deleteWorker.php" class="w3-bar-item w3-button">Delete Worker</a>
                   <a href="deleteDeparments.php" class="w3-bar-item w3-button">Delete Deparments</a>
-
                   <a href="developers.php" class="w3-bar-item w3-button">Developers</a>
+
+
 
                 </div>
 
@@ -62,19 +36,11 @@
                 <div style="margin-left:25%">
 
                 <div class="w3-container w3-teal">
-                  <h1>Add a new worker</h1>
+                  <h1>Delete by ID Worker</h1>
                 </div>
                 <br></br>
                  
-                Worker Name:<input type="text" id="inputName"/><br/><br/>
-                Worker Last Name:<input type="text" id="inputLast"/><br/><br/>
-                Date of join:<input type="text" id="inputDate"/><br/><br/>
-                <label for="combo">Choose a deparment:</label>
-
-                <select id="Combox">
-            
-                </select>
-
+                ID:<input type="text" id="input"/><br/><br/>
                 <br></br>
                 <button type="button" id="buttonSave" class="w3-button w3-teal w3-button">Save</button>
 
@@ -87,27 +53,13 @@
 
 <script> 
     document.getElementById("buttonSave").addEventListener("click", function(){
-
+        var idWorker= document.getElementById("input").value;
         var baseurl = "http://localhost:5000/workers";
         var xhr = new XMLHttpRequest();
-
-        var id= Math.floor(Math.random()*(9999+1));
-        var nameWorker= document.getElementById("inputName").value;
-        var lastNameWorker= document.getElementById("inputLast").value;
-        var dateOfJoinWorker= document.getElementById("inputDate").value;
-        var combox= document.getElementById("Combox");
-        var selectedText = combox.options[combox.selectedIndex].text;
-
-
-        xhr.open('POST', baseurl, true);
+        xhr.open('DELETE', baseurl, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
-            "idWorker": id,
-            "lastNameWorker":lastNameWorker,
-            "nameWorker": nameWorker,
-            "dateOfAdmisionWorker": dateOfJoinWorker,
-            "nameDeparmentFk": selectedText
-           
+            "idWorker": idWorker
         }));
     });
 </script> 

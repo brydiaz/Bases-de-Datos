@@ -48,8 +48,14 @@
                   <a href="showDepartments.php" class="w3-bar-item w3-button">Show Deparments</a>
                   <a href="insertWorkers.php" class="w3-bar-item w3-button">Insert Workers</a>
                   <a href="insertDeparments.php" class="w3-bar-item w3-button">Insert Deparments</a>
+                  <a href="editWorker.php" class="w3-bar-item w3-button">Edit Worker</a>
+                  <a href="editDeparment.php" class="w3-bar-item w3-button">Edit Deparment</a>
 
-                  <a href="#" class="w3-bar-item w3-button">Developers</a>
+                  <a href="deleteWorker.php" class="w3-bar-item w3-button">Delete Worker</a>
+                  <a href="deleteDeparments.php" class="w3-bar-item w3-button">Delete Deparments</a>
+
+
+                  <a href="developers.php" class="w3-bar-item w3-button">Developers</a>
                 </div>
 
                 <!-- Page Content -->

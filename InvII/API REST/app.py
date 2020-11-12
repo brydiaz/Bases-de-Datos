@@ -44,6 +44,37 @@ def insertWorkers():
     print(newDeparment)
     nexo= dataBase.insertWorker(newDeparment)
 
+@app.route('/workers', methods=['DELETE'])
+def deleteWorker():
+    idWorker = request.json['idWorker']
+    nexo = dataBase.deleteWorker("idWorker", int(idWorker))
+
+@app.route('/deparments', methods=['DELETE'])
+def deleteDeparment():
+    idDeparment = request.json['idDeparment']
+    nexo = dataBase.deleteDeparment("idDeparment", int(idDeparment))
+
+@app.route('/workers', methods=['PUT'])
+def editWorker():
+    deparments= dataBase.conection(1)
+    myquery = { "deparmentName": request.json['nameDeparmentFk'] }
+    deparment= deparments.find_one(myquery, {"_id":0, "idDeparment":1})
+    newDeparment={
+        "lastNameWorker" : request.json['lastNameWorker'],
+        "nameWorker" : request.json['nameWorker'],
+        "dateOfAdmisionWorker" : request.json['dateOfAdmisionWorker'],
+        "idDeparmentFk" : deparment['idDeparment'],
+        "nameDeparmentFk" : request.json['nameDeparmentFk']
+    }
+    nexo= dataBase.actWorker(int(request.json['idWorker']),newDeparment)
+
+@app.route('/deparments', methods=['PUT'])
+def editDeparment():
+    newDeparment={
+        "deparmentName" : request.json['deparmentName'],
+    }
+    nexo= dataBase.actDeparment(int( request.json['idDeparment']), newDeparment)
+
 if __name__=='__main__':
     print("API WORKING")
     app.run(debug=True, port=5000)

@@ -1,33 +1,7 @@
 <!DOCTYPE html>
 <html lang="esp">
     <head>
-    <script>
-      var baseurl = "http://localhost:5000";
-      function loadDeparments(){
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET",baseurl + "/deparments",true);
-        xmlhttp.onreadystatechange = function() {
-          if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
-            var persons = JSON.parse(xmlhttp.responseText);
-            var tbltop = `<table>
-			    <tr><th>Deparment ID</th><th>Deparment Name</th>`;
-            //main table content we fill from data from the rest call
-            var main ="";
-            for (i = 0; i < persons.length; i++){
-              main += "<tr><td>"+persons[i].idDeparment+"</td><td>"+persons[i].deparmentName;
-            }
-            var tblbottom = "</table>";
-            var tbl = tbltop + main + tblbottom;
-            document.getElementById("personinfo").innerHTML = tbl;
-          }
-        };
-        xmlhttp.send();
-      }
-      window.onload = function(){
-        loadDeparments();
-      }
-
-    </script>
+     
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -45,30 +19,49 @@
                 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
                   <h3 class="w3-bar-item">Options</h3>
                   <a href="index.php" class="w3-bar-item w3-button">Home</a>
+                  <a href="showDepartments.php" class="w3-bar-item w3-button">Show Departments</a>
                   <a href="showWorkers.php" class="w3-bar-item w3-button">Show Workers</a>
                   <a href="insertWorkers.php" class="w3-bar-item w3-button">Insert Workers</a>
                   <a href="insertDeparments.php" class="w3-bar-item w3-button">Insert Deparments</a>
                   <a href="editWorker.php" class="w3-bar-item w3-button">Edit Worker</a>
                   <a href="editDeparment.php" class="w3-bar-item w3-button">Edit Deparment</a>
 
-                  <a href="deleteWorker.php" class="w3-bar-item w3-button">Delete Worker</a>
-                  <a href="deleteDeparments.php" class="w3-bar-item w3-button">Delete Deparments</a>
-
-                  
+                  <a href="deleteWorker.php" class="w3-bar-item w3-button">Delete Workers</a>
                   <a href="developers.php" class="w3-bar-item w3-button">Developers</a>
+
                 </div>
 
                 <!-- Page Content -->
                 <div style="margin-left:25%">
 
                 <div class="w3-container w3-teal">
-                  <h1>All Deparments in the Company</h1>
-                   
+                  <h1>Delete by ID Deparment</h1>
                 </div>
-                <div id="personinfo"> </div>
+                <br></br>
+                 
+                ID:<input type="text" id="input"/><br/><br/>
+                <br></br>
+                <button type="button" id="buttonSave" class="w3-button w3-teal w3-button">Save</button>
+
 
             </div>
         
         </body>
 
 </html>
+
+<script> 
+    document.getElementById("buttonSave").addEventListener("click", function(){
+        var idDeparment = document.getElementById("input").value;
+        var baseurl = "http://localhost:5000/deparments";
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', baseurl, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            "idDeparment": idDeparment
+        }));
+    });
+</script> 
+
+
+

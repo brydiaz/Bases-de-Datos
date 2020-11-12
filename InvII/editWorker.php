@@ -48,11 +48,14 @@
                   <a href="index.php" class="w3-bar-item w3-button">Home</a>
                   <a href="showDepartments.php" class="w3-bar-item w3-button">Show Departments</a>
                   <a href="showWorkers.php" class="w3-bar-item w3-button">Show Workers</a>
+                  <a href="insertWorkers.php" class="w3-bar-item w3-button">Insert Workers</a>
                   <a href="insertDeparments.php" class="w3-bar-item w3-button">Insert Deparments</a>
-                  <a href="editWorker.php" class="w3-bar-item w3-button">Edit Worker</a>
                   <a href="editDeparment.php" class="w3-bar-item w3-button">Edit Deparment</a>
-                  <a href="deleteWorker.php" class="w3-bar-item w3-button">Delete Worker</a>
+                  <a href="deleteWorker.php" class="w3-bar-item w3-button">Delete Workers</a>
                   <a href="deleteDeparments.php" class="w3-bar-item w3-button">Delete Deparments</a>
+                  
+
+
 
                   <a href="developers.php" class="w3-bar-item w3-button">Developers</a>
 
@@ -65,7 +68,7 @@
                   <h1>Add a new worker</h1>
                 </div>
                 <br></br>
-                 
+                ID worker:<input type="text" id="idWorker"/><br/><br/>
                 Worker Name:<input type="text" id="inputName"/><br/><br/>
                 Worker Last Name:<input type="text" id="inputLast"/><br/><br/>
                 Date of join:<input type="text" id="inputDate"/><br/><br/>
@@ -91,7 +94,7 @@
         var baseurl = "http://localhost:5000/workers";
         var xhr = new XMLHttpRequest();
 
-        var id= Math.floor(Math.random()*(9999+1));
+        var id= document.getElementById("idWorker").value;
         var nameWorker= document.getElementById("inputName").value;
         var lastNameWorker= document.getElementById("inputLast").value;
         var dateOfJoinWorker= document.getElementById("inputDate").value;
@@ -99,10 +102,10 @@
         var selectedText = combox.options[combox.selectedIndex].text;
 
 
-        xhr.open('POST', baseurl, true);
+        xhr.open('PUT', baseurl, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
-            "idWorker": id,
+            "idWorker": parseInt(id,10),
             "lastNameWorker":lastNameWorker,
             "nameWorker": nameWorker,
             "dateOfAdmisionWorker": dateOfJoinWorker,

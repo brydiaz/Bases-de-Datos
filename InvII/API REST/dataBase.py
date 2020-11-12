@@ -36,11 +36,10 @@ def deleteDeparment(key, value):
     deparments.delete_one(myquery)
 
 #Actualiza un departamento de la base, pero solo la llave y valor por ves
-def actDeparment(key, value, newValue):
-    workers= conection(2)
-    workerToUpdate={ key: value }
-    newvalues = {"$set" : {key: newValue}}
-    workers.update_one(workerToUpdate, newvalues)
+def actDeparment(value, newValue):
+    deparments= conection(1)
+    myquery={"idDeparment": value }
+    deparments.update_one(myquery, {"$set":newValue})
 
 
 #Consigue los datos de los trabajadores de la base, devuelve un json con los objetos
@@ -63,9 +62,7 @@ def deleteWorker(key, value):
     workers.delete_one(myquery)
 
 #Actualiza un trabajador de la base, pero solo la llave y valor por ves
-def actWorker(key, value, newValue):
+def actWorker(value,workerToUpdate):
     workers= conection(2)
-    workerToUpdate={ key: value }
-    newvalues = {"$set" : {key: newValue}}
-    workers.update_one(workerToUpdate, newvalues)
-
+    myquery = {"idWorker" : value}
+    workers.update_one(myquery, {"$set":workerToUpdate})
